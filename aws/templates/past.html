@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>プロンプト履歴</title>
+<style>
+body {
+        background-color: #f7f7f8;
+    }
+   
+    prompt-list {
+        display: flex;
+        flex-direction: column;
+    }
+    input[type="submit"] {
+        margin-bottom: 30px;
+         background-color: #4f7cff;
+        color: white;
+    }
+    h1 {
+        text-align: center;
+    }
+</style>
+</head>
+
+<body>
+
+    <div class="page-header">
+        <a href="/aws/main" class="back-button">←画像生成画面へ戻る</a>
+    
+        <h1>過去に入力したプロンプト</h1>
+    </div>
+
+    {% for prompt in prompts %}
+
+    <div class="prompt-list">
+        <p>{{ prompt.prompt }}</p>
+        <a href="/aws/prompt/{{prompt.id}}">再利用</a>
+    </div>
+
+    {% endfor %}
+
+</body>
+</html>

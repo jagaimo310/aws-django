@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>プロンプト入力画面</title>
+<style>
+    body {
+        text-align: center;
+        background-color: #f7f7f8;
+    }
+    textarea {
+        width: 100%;
+        height: 180px;
+        background-color: white;
+        padding: 15px;
+        border-radius: 15px;
+    }
+    .prompt-area {
+        position: relative;
+        width: 70%;
+        margin: 50px auto;
+    }
+    .generate-btn {
+        position: absolute ;
+        right: 10px;
+        bottom: 30px;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background-color: #4f7cff;
+        color: white;
+    }
+    .history-btn {
+        background-color: #4f7cff;
+        color: white;
+    }
+    .history-buttons {
+        margin-top: 20px;
+    }
+    .history-buttons form {
+        display: inline;
+    }
+    img {
+        width: 50%;
+    }
+
+</style>
+</head>
+<body>
+    <h1>生成AIアプリケーション</h1>
+
+    <p>
+        こんにちは！<br>
+        どんな画像を生成しますか？
+    </p>
+
+    <form  action="/aws/prompt/" method="post">
+        {% csrf_token %}
+        <div class="prompt-area">
+            <br>
+            {{form}}
+            <input 
+                    class="generate-btn"
+                    type ='submit' 
+                    value ='↑'>
+        </div>
+        <br>
+    </form>
+
+    <hr>
+    {% if image_url %}
+        <h2>生成結果</h2>
+        <img
+            src="{{ image_url }}"
+            alt="生成画像"
+        >
+    {% endif %}
+
+    <br><br>
+
+    <div class="history-buttons">
+        <a href="/aws/image" class="history-btn">生成画像履歴</a>
+        <a href="/aws/past" class="history-btn">プロンプト履歴</a>
+    </div>
+
+</body>
+</html>

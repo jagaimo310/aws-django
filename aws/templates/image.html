@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>生成画像履歴</title>
+<style>
+     body {
+        background-color: #f7f7f8;
+    }
+   
+    gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        gap: 20px;
+    }
+    gallery-grid img {
+        width: 100%;
+        height: 250px;
+    }
+    .back-button {
+        text-align: left;
+    }
+    h1 {
+        text-align: center;
+    }
+</style>
+</head>
+<body>
+
+    <div class="page-header">
+        <a href="/aws/main" class="back-button">←画像生成画面へ戻る</a>
+
+        <h1>保存した画像</h1>
+    </div>
+
+    <div class="gallery-grid">
+        {% for prompt in prompts %}
+        <img 
+            src="{{ prompt.image_url }}"
+            alt="生成画像"
+        >
+        {% endfor %}
+    </div>
+
+</body>
+</html>
